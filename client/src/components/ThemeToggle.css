@@ -1,0 +1,94 @@
+/* Container Styles */
+.theme-toggle-wrapper {
+    width: 70px;
+    /* Reduced from 90px */
+    height: 30px;
+    /* Reduced from 40px */
+    background: #9cd6ef;
+    border: 2px solid #65c0e7;
+    /* Thinner border */
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle-wrapper svg {
+    height: 140%;
+    width: auto;
+    position: absolute;
+    left: -10%;
+    top: -20%;
+    pointer-events: none;
+    transition: all 1s ease-in-out;
+}
+
+/* Day Mode (Default) */
+.theme-toggle-wrapper.day-mode {
+    background: #9cd6ef;
+    border-color: #65c0e7;
+}
+
+.day-mode .sun-group {
+    transform: translateX(12px);
+    /* Adjusted */
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}
+
+.day-mode .cloud-group {
+    transform: translateX(12px);
+    /* Adjusted */
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}
+
+.day-mode .moon-group {
+    transform: translateX(12px) rotate(0deg);
+    opacity: 0;
+    transform-origin: center;
+    transition: all 1s ease-in-out;
+}
+
+.day-mode .stars {
+    transform: translate(25px, -5px);
+    /* Adjusted */
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Night Mode */
+.theme-toggle-wrapper.night-mode {
+    background: #224f6d;
+    border-color: #cad4d8;
+}
+
+.night-mode .sun-group {
+    transform: translateX(-110px);
+    /* Scaled shift */
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.night-mode .cloud-group {
+    transform: translateX(-110px);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.night-mode .moon-group {
+    transform: translateX(-95px) rotate(-360deg);
+    /* Scaled shift */
+    opacity: 1;
+    transform-origin: center;
+    transition: all 1s ease-in-out;
+}
+
+.night-mode .stars {
+    transform: translate(25px, -5px);
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}

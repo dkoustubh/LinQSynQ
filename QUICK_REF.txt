@@ -1,0 +1,125 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║         🚀 FUSEFLOW - QUICK REFERENCE CARD                        ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+📍 PLC INFORMATION
+───────────────────────────────────────────────────────────────────
+  IP Address:    192.168.103.24
+  Protocol:      S7 (ISO-on-TCP)
+  Port:          102
+  Rack:          0
+  Slot:          1
+  Status:        🟢 Network OK, 🔴 PUT/GET Required
+
+📊 CURRENT STATUS
+───────────────────────────────────────────────────────────────────
+  ✅ Network Connection     → WORKING (8.3ms ping)
+  ✅ Port 102 (S7)          → ACCESSIBLE
+  ✅ Port 4840 (OPC UA)     → ACCESSIBLE
+  ✅ ISO-on-TCP Handshake   → SUCCESS
+  ✅ PDU Negotiation        → SUCCESS (960 bytes)
+  ⚠️  Data Read/Write        → BLOCKED (Response Code 5)
+  
+  📝 Action Required: Enable PUT/GET in TIA Portal
+
+🔧 QUICK FIX (5 MINUTES)
+───────────────────────────────────────────────────────────────────
+  1. Open TIA Portal
+  2. Device View → CPU → Properties
+  3. Protection & Security → Connection Mechanisms
+  4. ✅ Check "Permit access with PUT/GET communication"
+  5. Compile → Download to PLC
+  6. Test: node test-connection.js
+
+💻 QUICK COMMANDS
+───────────────────────────────────────────────────────────────────
+  Test Connection:    ./fuseflow.sh test
+  Start FuseFlow:     ./fuseflow.sh start
+  Check Network:      ./fuseflow.sh ping
+  Check Ports:        ./fuseflow.sh ports
+  View Status:        ./fuseflow.sh status
+  View Logs:          ./fuseflow.sh logs
+
+🌐 URLS
+───────────────────────────────────────────────────────────────────
+  Dashboard:     http://localhost:5173
+  Backend API:   http://localhost:3001
+  Node-RED:      http://localhost:1881/red
+
+📂 IMPORTANT FILES
+───────────────────────────────────────────────────────────────────
+  ⭐ STATUS_REPORT.md    → Start here!
+  📋 TASK_SUMMARY.md     → What's done, what's next
+  🔧 DIAGNOSTICS.md      → Troubleshooting guide
+  📖 PLC_CONFIG.md       → Configuration details
+  🧪 test-connection.js  → Connection tester
+  ⚡ fuseflow.sh         → Quick commands
+
+🏷️  TAG CONFIGURATION
+───────────────────────────────────────────────────────────────────
+  File: tags.json
+  
+  Current (placeholder):
+    TEST_TAG          → DB1,INT0
+    PRODUCTION_DATA   → DB2,INT0
+    MACHINE_STATUS    → DB2,INT10
+    PROCESS_VALUES    → DB2,REAL20
+  
+  ⚠️  Update with actual DB byte offsets from TIA Portal!
+
+🧪 TEST PROCEDURE
+───────────────────────────────────────────────────────────────────
+  Step 1: Enable PUT/GET in TIA Portal
+  Step 2: node test-connection.js
+  Step 3: Verify "✅ Connected AND read data"
+  Step 4: npm run dev
+  Step 5: Open http://localhost:5173
+  Step 6: See live data flowing!
+
+⚠️  TROUBLESHOOTING
+───────────────────────────────────────────────────────────────────
+  Error: "Invalid Response Code - 5"
+    → Solution: Enable PUT/GET in TIA Portal
+  
+  Error: "Connection timeout"
+    → Check: PLC is reachable (./fuseflow.sh ping)
+  
+  Error: "Bad quality" readings
+    → Check: Disable "Optimized Block Access" on DBs
+  
+  No data shown:
+    → Check: Correct DB addresses in tags.json
+
+🔄 PROTOCOL OPTIONS
+───────────────────────────────────────────────────────────────────
+  Current:     S7 Protocol (port 102)
+  Alternative: OPC UA (port 4840) - both available!
+
+📈 EXPECTED BEHAVIOR (After PUT/GET Fix)
+───────────────────────────────────────────────────────────────────
+  Console Output:
+    [API] PLC Connected Successfully!
+    [API] ✅ Reading tags: TEST_TAG=123...
+  
+  Dashboard:
+    🟢 Status: ONLINE
+    📊 Live values updating every 1 second
+    📈 Real-time trend charts
+    ✍️  Write functionality working
+
+📞 SUPPORT
+───────────────────────────────────────────────────────────────────
+  Read:   STATUS_REPORT.md (most comprehensive)
+  Debug:  DIAGNOSTICS.md (detailed troubleshooting)
+  Test:   ./fuseflow.sh test
+
+⏱️  ESTIMATED TIME TO FIX
+───────────────────────────────────────────────────────────────────
+  5-10 minutes (just enable PUT/GET and test!)
+  Confidence: 99%
+
+╔═══════════════════════════════════════════════════════════════════╗
+║  🎯 NEXT STEP: Open TIA Portal and enable PUT/GET!               ║
+╚═══════════════════════════════════════════════════════════════════╝

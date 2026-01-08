@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuseFlow Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .test-box {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #666;
+        }
+
+        .test-box.success {
+            border-left-color: #4CAF50;
+        }
+
+        .test-box.error {
+            border-left-color: #f44336;
+        }
+
+        .test-box.pending {
+            border-left-color: #ff9800;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        pre {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .success-text {
+            color: #4CAF50;
+        }
+
+        .error-text {
+            color: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔍 FuseFlow Connection Diagnostic</h1>
+
+    <button onclick="runTests()">🧪 Run All Tests</button>
+
+    <div id="results"></div>
+
+    <script>
+        async function testBackend() {
+            const resultDiv = document.getElementById('results');
+            let html = '<div class="test-box pending"><h3>Testing Backend API...</h3><p>Fetching http://localhost:3001/api/status</p></div>';
+            resultDiv.innerHTML = html;
+
+            try {
+                const response = await fetch('http://localhost:3001/api/status');
+                const data = await response.json();
+
+                html = `
+                    <div class="test-box success">
+                        <h3 class="success-text">✅ Backend API: WORKING</h3>
+                        <p><strong>Protocol:</strong> ${data.protocol}</p>
+                        <p><strong>Connected:</strong> <span class="status ${data.connected ? 'success-text' : 'error-text'}">${data.connected ? 'YES ✅' : 'NO ❌'}</span></p>
+                        <p><strong>Endpoint:</strong> ${data.config?.endpointUrl || data.config?.host || 'N/A'}</p>
+                        <p><strong>Tags Count:</strong> ${Object.keys(data.tags || {}).length}</p>
+                        <details>
+                            <summary>View Full Response</summary>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </details>
+                    </div>
+                `;
+
+                if (data.connected) {
+                    html += `
+                        <div class="test-box success">
+                            <h3 class="success-text">🎉 GOOD NEWS!</h3>
+                            <p>Your backend is connected and working!</p>
+                            <p><strong>Next:</strong> The frontend should work at:</p>
+                            <ul>
+                                <li><a href="http://localhost:5173" target="_blank">http://localhost:5173</a></li>
+                                <li><a href="http://localhost:5174" target="_blank">http://localhost:5174</a></li>
+                                <li><a href="http://localhost:5175" target="_blank">http://localhost:5175</a></li>
+                            </ul>
+                            <p>Try opening these in a new tab!</p>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                html = `
+                    <div class="test-box error">
+                        <h3 class="error-text">❌ Backend API: ERROR</h3>
+                        <p><strong>Error:</strong> ${error.message}</p>
+                        <p>The backend server is not responding on port 3001.</p>
+                        <p><strong>Solution:</strong> Make sure you started the server with:</p>
+                        <pre>npm run dev:opcua</pre>
+                    </div>
+                `;
+            }
+
+            resultDiv.innerHTML = html;
+        }
+
+        async function testSocketIO() {
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML += '<div class="test-box pending"><h3>Testing Socket.IO...</h3></div>';
+
+            // This would require loading socket.io-client library
+            resultDiv.innerHTML += `
+                <div class="test-box">
+                    <h3>ℹ️ Socket.IO Test</h3>
+                    <p>Socket.IO connection test requires the socket.io-client library.</p>
+                    <p>If the Backend API test passed, Socket.IO should work too.</p>
+                </div>
+            `;
+        }
+
+        async function runTests() {
+            await testBackend();
+            await testSocketIO();
+        }
+
+        // Run tests automatically on page load
+        window.addEventListener('load', runTests);
+    </script>
+</body>
+
+</html>

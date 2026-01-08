@@ -1,0 +1,32 @@
+{
+  "name": "linqsynq",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start:opcua": "node server-opcua.js",
+    "nodered": "node node-red-runner.js",
+    "dev": "concurrently -k -n \"API,UI,RED\" -c \"blue,green,red\" \"npm run start\" \"npm run client\" \"npm run nodered\"",
+    "dev:opcua": "concurrently -k -n \"API,UI,RED\" -c \"blue,green,red\" \"npm run start:opcua\" \"npm run client\" \"npm run nodered\"",
+    "client": "cd client && npm run dev"
+  },
+  "keywords": [],
+  "author": "Koustubh Deodhar",
+  "license": "MIT",
+  "description": "Industrial Communication Gateway for PLCs (Siemens S7, Rockwell) and OPC UA.",
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.5",
+    "csv-writer": "^1.6.0",
+    "express": "^5.2.1",
+    "mongoose": "^9.1.2",
+    "mqtt": "^5.14.1",
+    "node-opcua": "^2.158.0",
+    "node-opcua-client": "^2.158.0",
+    "node-red": "^4.1.2",
+    "node-red-contrib-s7": "^3.1.1",
+    "nodes7": "^0.3.18",
+    "socket.io": "^4.8.1"
+  }
+}

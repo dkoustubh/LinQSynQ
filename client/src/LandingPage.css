@@ -1,0 +1,271 @@
+/* LandingPage.css - Hyros Style Inspired */
+:root {
+    --lp-bg: #050505;
+    --lp-bg-dark: #000000;
+    --lp-text: #ffffff;
+    --lp-text-muted: #888888;
+    --lp-accent: #ff5500;
+    /* Hyros-like orange/red accent */
+    --lp-border: #222222;
+    --lp-card-bg: #111111;
+    --font-display: 'Inter', system-ui, sans-serif;
+}
+
+.lp-container {
+    background-color: var(--lp-bg);
+    color: var(--lp-text);
+    font-family: var(--font-display);
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+/* Navbar */
+.lp-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    border-bottom: 1px solid var(--lp-border);
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.lp-logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.lp-logo span {
+    color: var(--lp-accent);
+}
+
+.lp-btn-login {
+    background: var(--lp-text);
+    color: var(--lp-bg);
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    /* Slightly squarish like Hyros */
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.lp-btn-login:hover {
+    transform: scale(1.05);
+    background: #e0e0e0;
+}
+
+/* Hero Section */
+.lp-hero {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.lp-hero h1 {
+    font-size: 5rem;
+    line-height: 0.95;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lp-hero p {
+    font-size: 1.5rem;
+    color: var(--lp-text-muted);
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.5;
+}
+
+.lp-hero-image {
+    border-radius: 20px;
+    border: 1px solid var(--lp-border);
+    overflow: hidden;
+    margin-top: 3rem;
+    box-shadow: 0 0 100px rgba(255, 85, 0, 0.2);
+}
+
+.lp-hero-image img {
+    width: 100%;
+    display: block;
+}
+
+/* Problem / Solution Split */
+.lp-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    /* Grid line gap */
+    background: var(--lp-border);
+    margin: 6rem 0;
+}
+
+.lp-comp-side {
+    background: var(--lp-bg-dark);
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lp-comp-side.old {
+    position: relative;
+}
+
+.lp-comp-side.new {
+    position: relative;
+    background: radial-gradient(circle at top right, #1a0a00, #000);
+}
+
+.lp-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.lp-badge.red {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff4444;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.lp-badge.green {
+    background: rgba(85, 255, 0, 0.2);
+    color: #88ff00;
+    border: 1px solid rgba(85, 255, 0, 0.3);
+}
+
+.lp-comp-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.lp-comp-desc {
+    font-size: 1.1rem;
+    color: var(--lp-text-muted);
+    margin-bottom: 2rem;
+}
+
+.lp-comp-img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--lp-border);
+    height: 300px;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+/* Features Grid */
+.lp-features {
+    padding: 6rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.lp-section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.lp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.lp-card {
+    background: var(--lp-card-bg);
+    border: 1px solid var(--lp-border);
+    padding: 2.5rem;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.lp-card:hover {
+    border-color: var(--lp-accent);
+    transform: translateY(-5px);
+}
+
+.lp-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.lp-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.lp-card p {
+    color: var(--lp-text-muted);
+    line-height: 1.6;
+}
+
+/* CTA Footer */
+.lp-cta {
+    background: var(--lp-accent);
+    color: white;
+    text-align: center;
+    padding: 8rem 2rem;
+}
+
+.lp-cta h2 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    color: #000;
+    /* Contrast against orange */
+}
+
+.lp-cta-btn {
+    background: #000;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding: 1.5rem 4rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.lp-cta-btn:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .lp-hero h1 {
+        font-size: 3rem;
+    }
+
+    .lp-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .lp-cta h2 {
+        font-size: 2.5rem;
+    }
+}
