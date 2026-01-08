@@ -1,4 +1,4 @@
-# FuseFlow - Industrial IoT Platform
+# LinQ-SynQ - Industrial IoT Platform
 
 **Created by Koustubh Deodhar (2025) @ ATS Conveyors India Pvt. Ltd.**
 
